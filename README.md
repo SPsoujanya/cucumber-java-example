@@ -38,11 +38,11 @@
        provided group: 'info.cukes', name: 'gherkin', version: '2.12.2'
 
 
-#####Note:   While moving forward we may require more libraries or to modify existing one
+##### Note:   While moving forward we may require more libraries or to modify existing one
 #####        "provided" may be replace with "compileOnly"
 #####        "compile" may be replace with "implementation"
 
-###--- Required Plugin for IntelliJ or Android Studio ---
+### --- Required Plugin for IntelliJ or Android Studio ---
 
     1) Gherkin
     2) Cucumber for Java
