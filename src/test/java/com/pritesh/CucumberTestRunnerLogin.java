@@ -10,10 +10,10 @@ import org.junit.runner.RunWith;
 //@CucumberOptions(plugin = {"pretty", "io.cucumber.pro.JsonReporter:all"})
 //@CucumberOptions(features = {"./feature/First.feature","./feature/Second.feature"}, glue={"pritesh.cucumberexample"})//, dryRun = true
 //@CucumberOptions(features = "./feature/First.feature", glue={"pritesh.cucumberexample"})//, dryRun = true
-//@CucumberOptions(features = "src/test/resources/features/Second.feature", glue = {"com.pritesh"}, plugin = "html:target/selenium-reports")
-@CucumberOptions(features = "src/test/resources/features", glue = {"com.pritesh"}, format = {"pretty", "html:target/cucumber", "json:target/cucumber.json"})
+//@CucumberOptions(features = "src/test/resources/features/Fifth.feature", glue = {"com.pritesh"}, plugin = "html:target/selenium-reports")
+@CucumberOptions(features = "src/test/resources/features/userLogin.feature", glue = {"com.pritesh"}, format = {"pretty", "html:target/cucumber", "json:target/cucumber.json"})
 //, dryRun = true
 //@CucumberOptions(features = "./feature", glue={"pritesh.cucumberexample"})//, dryRun = true
 
-public class CucumberTestRunner {
+public class CucumberTestRunnerLogin {
 }
