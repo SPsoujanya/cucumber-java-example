@@ -11,7 +11,12 @@ import org.junit.runner.RunWith;
 //@CucumberOptions(features = {"./feature/First.feature","./feature/Second.feature"}, glue={"pritesh.cucumberexample"})//, dryRun = true
 //@CucumberOptions(features = "./feature/First.feature", glue={"pritesh.cucumberexample"})//, dryRun = true
 //@CucumberOptions(features = "src/test/resources/features/Second.feature", glue = {"com.pritesh"}, plugin = "html:target/selenium-reports")
-@CucumberOptions(features = "src/test/resources/features", glue = {"com.pritesh"}, format = {"pretty", "html:target/cucumber", "json:target/cucumber.json"})
+@CucumberOptions(features = "src/test/resources/features",
+        glue = {"com.pritesh"},
+        tags = {"~@LogoutTest"},
+        format = {"pretty",
+                "html:target/cucumber",
+                "json:target/cucumber.json"})
 //, dryRun = true
 //@CucumberOptions(features = "./feature", glue={"pritesh.cucumberexample"})//, dryRun = true
 
