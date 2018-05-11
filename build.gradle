@@ -1,11 +1,26 @@
-plugins {
-    id 'java'
-}
+apply plugin: 'java'
+//plugins {
+//    id 'java'
+//}
 
 group 'com.pritesh'
 version '1.0-SNAPSHOT'
 
 sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+sourceSets {
+    main.java.srcDir "src/main/java"
+    main.resources.srcDir "src/main/resources"
+    test.java.srcDir "src/test/java"
+    test.resources.srcDir "src/test/resources"
+}
+
+//Add if you want to create jar file for project
+jar {
+    baseName = 'cucumber-java-example'
+    version =  '0.1.0'
+}
 
 repositories {
     mavenCentral()
