@@ -4,6 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -13,10 +14,10 @@ import java.util.Set;
 
 import static org.openqa.selenium.support.ui.ExpectedConditions.*;
 
-//https://seleniumjava.com/2017/08/10/use-a-custom-driver-class-instead-of-utility-classes/
-//https://gist.github.com/arunma/3206905
-//https://gist.github.com/tjmaher/4d5c3a523cca6d79b8e7
-//http://automationtestingutilities.blogspot.com/p/blog-page.html
+// https://seleniumjava.com/2017/08/10/use-a-custom-driver-class-instead-of-utility-classes/
+// https://gist.github.com/arunma/3206905
+// https://gist.github.com/tjmaher/4d5c3a523cca6d79b8e7
+// http://automationtestingutilities.blogspot.com/p/blog-page.html
 //
 public final class BrowserDriver implements WebDriver {
 
@@ -32,41 +33,40 @@ public final class BrowserDriver implements WebDriver {
     }
 
     private WebDriver createDriver(String browserName) {
-        if (browserName.toUpperCase().equals(DRIVER_NAME.FIREFOX))
-            return firefoxDriver();
+        if (browserName.toUpperCase().equals(DRIVER_NAME.FIREFOX)) return firefoxDriver();
 
-        if (browserName.toUpperCase().equals(DRIVER_NAME.CHROME))
+        if (browserName.toUpperCase().equals(DRIVER_NAME.CHROME)) {
+
+            ChromeOptions options = new ChromeOptions();
+            options.addArguments("disable-infobars");
+            options.addArguments("--start-maximized");
+
             return chromeDriver();
+        }
 
         throw new RuntimeException("invalid browser name");
     }
 
     private WebDriver chromeDriver() {
         if (!new File(chromeDriverPath).exists())
-            throw new RuntimeException
-                    ("chromedriver does not exist!");
+            throw new RuntimeException("chromedriver does not exist!");
 
         try {
-            System.setProperty("webdriver.chrome.driver",
-                    chromeDriverPath);
+            System.setProperty("webdriver.chrome.driver", chromeDriverPath);
             return new ChromeDriver();
         } catch (Exception ex) {
-            throw new RuntimeException
-                    ("couldnt create chrome driver");
+            throw new RuntimeException("couldnt create chrome driver");
         }
     }
 
     private WebDriver firefoxDriver() {
         if (!new File(firefoxDriverPath).exists())
-            throw new RuntimeException
-                    ("firefoxdriver does not exist!");
+            throw new RuntimeException("firefoxdriver does not exist!");
         try {
-            System.setProperty("webdriver.gecko.driver",
-                    firefoxDriverPath);
+            System.setProperty("webdriver.gecko.driver", firefoxDriverPath);
             return new FirefoxDriver();
         } catch (Exception ex) {
-            throw new RuntimeException
-                    ("could not create the firefox driver");
+            throw new RuntimeException("could not create the firefox driver");
         }
     }
 
@@ -105,7 +105,6 @@ public final class BrowserDriver implements WebDriver {
     }
 
     @Override
-
     public String getPageSource() {
         return driver().getPageSource();
     }
@@ -146,20 +145,19 @@ public final class BrowserDriver implements WebDriver {
     }
 
     public WebElement findVisibleElement(By locator) {
-        WebElement element = new WebDriverWait(driver(), timeout)
-                .until(visibilityOfElementLocated(locator));
+        WebElement element =
+                new WebDriverWait(driver(), timeout).until(visibilityOfElementLocated(locator));
         return element;
     }
 
     public WebElement findClickableElement(By locator) {
-        WebElement element = new WebDriverWait(driver(), timeout)
-                .until(elementToBeClickable(locator));
+        WebElement element = new WebDriverWait(driver(), timeout).until(elementToBeClickable(locator));
         return element;
     }
 
     public WebElement findHiddenElement(By locator) {
-        WebElement element = new WebDriverWait(driver(), timeout)
-                .until(presenceOfElementLocated(locator));
+        WebElement element =
+                new WebDriverWait(driver(), timeout).until(presenceOfElementLocated(locator));
         return element;
     }
 
