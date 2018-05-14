@@ -13,7 +13,7 @@ import org.junit.runner.RunWith;
 //@CucumberOptions(features = "src/test/resources/features/Fifth.feature", glue = {"com.pritesh"}, plugin = "html:target/selenium-reports")
 @CucumberOptions(features = "src/test/resources/features/userLogin.feature",
         glue = {"com.pritesh"},
-        tags = {"@LoginTest"},
+        //tags = {"@LoginTest"},
         format = {"pretty", "html:target/cucumber", "json:target/cucumber.json"})
 //, dryRun = true
 //@CucumberOptions(features = "./feature", glue={"pritesh.cucumberexample"})//, dryRun = true

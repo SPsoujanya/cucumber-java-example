@@ -1,6 +1,7 @@
 package com.pritesh;
 
 import com.pritesh.utils.BrowserDriver;
+import cucumber.api.Scenario;
 import cucumber.api.java.After;
 import cucumber.api.java.Before;
 import cucumber.api.java.en.Given;
@@ -25,6 +26,20 @@ public class LoginTest {
     public void after() {
         driver.close();
         driver.quit();
+    }
+
+    @After
+    public void afterSuccessfulScenario(Scenario scenario) {
+        if (!scenario.isFailed()) {
+            System.out.println(scenario.getName() + " : [ Passed ]");
+        }
+    }
+
+    @After
+    public void afterFailedScenario(Scenario scenario) {
+        if (scenario.isFailed()) {
+            System.out.println(scenario.getName() + " : [ Failed ]");
+        }
     }
 
 
