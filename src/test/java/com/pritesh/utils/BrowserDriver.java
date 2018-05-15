@@ -33,13 +33,10 @@ public final class BrowserDriver implements WebDriver {
     }
 
     private WebDriver createDriver(String browserName) {
-        if (browserName.toUpperCase().equals(DRIVER_NAME.FIREFOX)) return firefoxDriver();
-
+        if (browserName.toUpperCase().equals(DRIVER_NAME.FIREFOX)) {
+            return firefoxDriver();
+        }
         if (browserName.toUpperCase().equals(DRIVER_NAME.CHROME)) {
-
-            ChromeOptions options = new ChromeOptions();
-            options.addArguments("disable-infobars");
-            options.addArguments("--start-maximized");
 
             return chromeDriver();
         }
@@ -53,7 +50,11 @@ public final class BrowserDriver implements WebDriver {
 
         try {
             System.setProperty("webdriver.chrome.driver", chromeDriverPath);
-            return new ChromeDriver();
+            ChromeOptions options = new ChromeOptions();
+            options.addArguments("disable-infobars");
+            options.addArguments("--start-maximized");
+            options.setHeadless(true);
+            return new ChromeDriver(options);
         } catch (Exception ex) {
             throw new RuntimeException("couldnt create chrome driver");
         }
