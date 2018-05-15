@@ -6,6 +6,7 @@ import cucumber.api.java.Before;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
+import org.junit.Assert;
 import org.openqa.selenium.By;
 
 public class SimpleEmulatorCalcTest extends AndroidDesiredCapabilitiesServer {
@@ -57,6 +58,6 @@ public class SimpleEmulatorCalcTest extends AndroidDesiredCapabilitiesServer {
         //resultEditTextID
         String result = driver.findElement(By.className("android.widget.EditText")).getText();
         System.out.println("Number sum result is : " + result);
-        //assertEquals
+        Assert.assertEquals(ans, result);
     }
 }
