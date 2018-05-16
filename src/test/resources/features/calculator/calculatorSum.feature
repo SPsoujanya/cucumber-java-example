@@ -17,5 +17,5 @@ Examples:
 | number1 | number2 | result |
 
 | 2      | 5      | 7 |
-
 | 5      | 5      | 10 |
+| 4      | 3      | 12 |

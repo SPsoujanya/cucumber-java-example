@@ -4,6 +4,8 @@ package com.pritesh.runner;
 
 import cucumber.api.CucumberOptions;
 import cucumber.api.junit.Cucumber;
+import org.junit.AfterClass;
+import org.junit.BeforeClass;
 import org.junit.runner.RunWith;
 
 @RunWith(Cucumber.class)
@@ -13,11 +15,19 @@ import org.junit.runner.RunWith;
 //@CucumberOptions(features = "src/test/resources/features/Second.feature", glue = {"com.pritesh"}, plugin = "html:target/selenium-reports")
 @CucumberOptions(features = "src/test/resources/features/calculator/calculatorSum.feature",
         glue = {"com.pritesh"},
-        format = {"pretty",
-                "html:target/cucumber",
-                "json:target/cucumber.json"})
+        plugin = {"com.cucumber.listener.ExtentCucumberFormatter:target/cucumber-reports/report.html"})
+//format = {"pretty", "html:target/cucumber", "json:target/cucumber.json"})
 //, dryRun = true
 //@CucumberOptions(features = "./feature", glue={"pritesh.cucumberexample"})//, dryRun = true
 
 public class CucumberCalculatorTestRunner {
+    @BeforeClass
+    public static void setUp() {
+        System.out.println("BeforeClass - CucumberCalculatorTestRunner ");
+    }
+
+    @AfterClass
+    public static void tearDown() {
+        System.out.println("AfterClass - CucumberCalculatorTestRunner ");
+    }
 }
