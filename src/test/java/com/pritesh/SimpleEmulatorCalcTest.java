@@ -15,6 +15,9 @@ import org.openqa.selenium.OutputType;
 
 import java.io.File;
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class SimpleEmulatorCalcTest extends AndroidDesiredCapabilitiesServer {
 
@@ -42,13 +45,23 @@ public class SimpleEmulatorCalcTest extends AndroidDesiredCapabilitiesServer {
 
                 //Building up the destination path for the screenshot to save
                 //Also make sure to create a folder 'screenshots' with in the cucumber-report folder
-                File destinationPath = new File(System.getProperty("user.dir") + "/target/cucumber-reports/screenshots/" + screenshotName + ".png");
+                DateFormat dateFormat = new SimpleDateFormat("dd-MMM-yyyy__hh_mm_ssaa");
+                // Create folder under project with name "screenshots" provided to destDir.
+                // Set file name using current date time.
+                String dateTimeString = dateFormat.format(new Date());
+
+                String imageFile = screenshotName + "_" + dateTimeString + ".png";
+                File destinationPath =
+                        new File(
+                                System.getProperty("user.dir")
+                                        + "/target/cucumber-reports/screenshots/"
+                                        + imageFile);
 
                 //Copy taken screenshot from source location to destination location
                 FileUtils.copyFile(sourcePath, destinationPath);
 
                 //This attach the specified screenshot to the test
-                Reporter.addScreenCaptureFromPath(destinationPath.toString());
+                Reporter.addScreenCaptureFromPath("./screenshots/" + imageFile);
             } catch (IOException e) {
             }
         }

@@ -2,20 +2,14 @@ package com.pritesh;
 
 import com.cucumber.listener.Reporter;
 import com.pritesh.utils.BrowserDriver;
-import cucumber.api.Scenario;
 import cucumber.api.java.After;
 import cucumber.api.java.Before;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
-import io.appium.java_client.android.AndroidDriver;
-import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.By;
-import org.openqa.selenium.OutputType;
 import org.openqa.selenium.WebDriver;
 
-import java.io.File;
-import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 public class LoginTest {
@@ -29,34 +23,11 @@ public class LoginTest {
         Reporter.assignAuthor("Cucumber - Pritesh Patel");
     }
 
-    @After(order = 0)
+    @After
     public void after() {
         driver.close();
         driver.quit();
     }
-
-    @After(order = 1)
-    public void afterScenario(Scenario scenario) {
-        if (scenario.isFailed()) {
-            String screenshotName = scenario.getName().replaceAll(" ", "_");
-            try {
-                //This takes a screenshot from the driver at save it to the specified location
-                File sourcePath = ((AndroidDriver) driver).getScreenshotAs(OutputType.FILE);
-
-                //Building up the destination path for the screenshot to save
-                //Also make sure to create a folder 'screenshots' with in the cucumber-report folder
-                File destinationPath = new File(System.getProperty("user.dir") + "/target/cucumber-reports/screenshots/" + screenshotName + ".png");
-
-                //Copy taken screenshot from source location to destination location
-                FileUtils.copyFile(sourcePath, destinationPath);
-
-                //This attach the specified screenshot to the test
-                Reporter.addScreenCaptureFromPath(destinationPath.toString());
-            } catch (IOException e) {
-            }
-        }
-    }
-
 
     @Given("^User is on Home Page$")
     public void user_is_on_Home_Page() {
