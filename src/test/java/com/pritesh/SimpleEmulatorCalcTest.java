@@ -2,7 +2,6 @@ package com.pritesh;
 
 
 import cucumber.api.java.After;
-import cucumber.api.java.Before;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
@@ -10,6 +9,7 @@ import org.junit.Assert;
 import org.openqa.selenium.By;
 
 public class SimpleEmulatorCalcTest extends AndroidDesiredCapabilitiesServer {
+    /*
     @Before
     public void setUp() throws Exception {
         //Created object of DesiredCapabilities class.
@@ -17,7 +17,7 @@ public class SimpleEmulatorCalcTest extends AndroidDesiredCapabilitiesServer {
         setAndroidDesiredCapabilities("2WMDU17320000701", "6.0.1", "com.android.calculator2", "com.android.calculator2.Calculator");
     }
 
-
+*/
     @After
     public void tearDown() {
         super.tearDown();

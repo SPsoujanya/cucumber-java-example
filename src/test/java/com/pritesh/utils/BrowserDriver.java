@@ -1,5 +1,6 @@
 package com.pritesh.utils;
 
+import com.pritesh.dataprovider.ConfigFileReader;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -23,12 +24,12 @@ public final class BrowserDriver implements WebDriver {
 
     private final String browserName;
     private final int timeout = 30;
-    private final String chromeDriverPath = "./driver/chromedriver";
-    private final String firefoxDriverPath = "./driver/geckodriver";
     private WebDriver driver;
+    private ConfigFileReader configFileReader;
 
     public BrowserDriver(String browserName) {
         this.browserName = browserName;
+        configFileReader = new ConfigFileReader();
         this.driver = createDriver(browserName);
     }
 
@@ -45,29 +46,29 @@ public final class BrowserDriver implements WebDriver {
     }
 
     private WebDriver chromeDriver() {
-        if (!new File(chromeDriverPath).exists())
+        if (!new File(configFileReader.getChromeDriverPath()).exists())
             throw new RuntimeException("chromedriver does not exist!");
 
         try {
-            System.setProperty("webdriver.chrome.driver", chromeDriverPath);
+            System.setProperty("webdriver.chrome.driver", configFileReader.getChromeDriverPath());
             ChromeOptions options = new ChromeOptions();
             options.addArguments("disable-infobars");
             options.addArguments("--start-maximized");
             options.setHeadless(true);
             return new ChromeDriver(options);
         } catch (Exception ex) {
-            throw new RuntimeException("couldnt create chrome driver");
+            throw new RuntimeException("couldn't create chrome driver");
         }
     }
 
     private WebDriver firefoxDriver() {
-        if (!new File(firefoxDriverPath).exists())
+        if (!new File(configFileReader.getFirefoxDriverPath()).exists())
             throw new RuntimeException("firefoxdriver does not exist!");
         try {
-            System.setProperty("webdriver.gecko.driver", firefoxDriverPath);
+            System.setProperty("webdriver.gecko.driver", configFileReader.getFirefoxDriverPath());
             return new FirefoxDriver();
         } catch (Exception ex) {
-            throw new RuntimeException("could not create the firefox driver");
+            throw new RuntimeException("couldn't not create the firefox driver");
         }
     }
 
