@@ -1,6 +1,5 @@
 package com.pritesh;
 
-import com.cucumber.listener.Reporter;
 import com.pritesh.utils.BrowserDriver;
 import cucumber.api.java.After;
 import cucumber.api.java.Before;
@@ -20,7 +19,7 @@ public class LoginTest {
         System.out.println(System.getProperty("user.dir"));
         driver = new BrowserDriver(BrowserDriver.DRIVER_NAME.CHROME);
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        Reporter.assignAuthor("Cucumber - Pritesh Patel");
+        //Reporter.assignAuthor("Cucumber - Pritesh Patel");
     }
 
     @After
