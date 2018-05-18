@@ -1,6 +1,6 @@
 # new feature
 # Tags: optional
-    
+
 Feature: Simple background feature
 
   Background: Execute before every scenario

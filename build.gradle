@@ -19,7 +19,7 @@ sourceSets {
 //Add if you want to create jar file for project
 jar {
     baseName = 'cucumber-java-example'
-    version =  '0.1.0'
+    version = '0.1.0'
 }
 
 repositories {

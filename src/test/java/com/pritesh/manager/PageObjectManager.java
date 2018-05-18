@@ -3,57 +3,55 @@ package com.pritesh.manager;
 import org.openqa.selenium.WebDriver;
 
 public class PageObjectManager {
-    private WebDriver driver;
+  private WebDriver driver;
 
-    /*
-    private ProductListingPage productListingPage;
+  /*
+  private ProductListingPage productListingPage;
 
-    private CartPage cartPage;
+  private CartPage cartPage;
 
-    private HomePage homePage;
+  private HomePage homePage;
 
-    private CheckoutPage checkoutPage;
+  private CheckoutPage checkoutPage;
 
-    private ConfirmationPage confirmationPage;
+  private ConfirmationPage confirmationPage;
 
-    */
+  */
 
-    public PageObjectManager(WebDriver driver) {
+  public PageObjectManager(WebDriver driver) {
 
-        this.driver = driver;
+    this.driver = driver;
+  }
 
-    }
+  /*
+  public HomePage getHomePage(){
 
+      return (homePage == null) ? homePage = new HomePage(driver) : homePage;
 
-    /*
-    public HomePage getHomePage(){
-
-        return (homePage == null) ? homePage = new HomePage(driver) : homePage;
-
-    }
+  }
 
 
 
-    public ProductListingPage getProductListingPage() {
+  public ProductListingPage getProductListingPage() {
 
-        return (productListingPage == null) ? productListingPage = new ProductListingPage(driver) : productListingPage;
+      return (productListingPage == null) ? productListingPage = new ProductListingPage(driver) : productListingPage;
 
-    }
-
-
-
-    public CartPage getCartPage() {
-
-        return (cartPage == null) ? cartPage = new CartPage(driver) : cartPage;
-
-    }
+  }
 
 
 
-    public CheckoutPage getCheckoutPage() {
+  public CartPage getCartPage() {
 
-        return (checkoutPage == null) ? checkoutPage = new CheckoutPage(driver) : checkoutPage;
+      return (cartPage == null) ? cartPage = new CartPage(driver) : cartPage;
 
-    }
-    */
+  }
+
+
+
+  public CheckoutPage getCheckoutPage() {
+
+      return (checkoutPage == null) ? checkoutPage = new CheckoutPage(driver) : checkoutPage;
+
+  }
+  */
 }

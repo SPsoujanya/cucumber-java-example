@@ -1,6 +1,6 @@
 # new feature
 # Tags: optional
-    
+
 @selenium
 Feature: Simple feature
 

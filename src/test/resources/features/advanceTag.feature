@@ -1,10 +1,10 @@
 # new feature
 # Tags: optional
-    
+
 @CCOrg @CCNet
 Feature: Testing for login page
 
-Scenario Outline: Bad login
+  Scenario Outline: Bad login
 
     Given I want to use the browser Firefox
     When I set the username to "<username>"
@@ -13,15 +13,15 @@ Scenario Outline: Bad login
     Then I see the error message "<message>"
     And I am on the login page
 
-    @Regression
+  @Regression
     Examples:
-    |	username		|	password		|		message		|
-    |	testuser1 		|				|	Please provide a password.	|
-    |				|	testuser1		|	Please provide a username.	|
-    |	testuser		|	testuser		|	That username does not match anything in our records.		|
-    |	testuser1		|	testuser2		|	The password provided does not match the username entered.	|
+      | username  | password  | message                                                    |
+      | testuser1 |           | Please provide a password.                                 |
+      |           | testuser1 | Please provide a username.                                 |
+      | testuser  | testuser  | That username does not match anything in our records.      |
+      | testuser1 | testuser2 | The password provided does not match the username entered. |
 
-Scenario Outline: Successful login
+  Scenario Outline: Successful login
 
     Given I want to use the browser "<browser>"
     When I set the username to testUserName
@@ -29,13 +29,13 @@ Scenario Outline: Successful login
     When I login to CosmicComix
     Then I am on the launcher page
 
-    @Regression
+  @Regression
     Examples:
-            |	    browser	 |
-            |	    Firefox	 |
-            |	    Chrome       |
-            |     InternetExplorer   |
-    @Smoke
+      | browser          |
+      | Firefox          |
+      | Chrome           |
+      | InternetExplorer |
+  @Smoke
     Examples:
-            |	browser		|
-            |	Firefox		|
+      | browser |
+      | Firefox |
