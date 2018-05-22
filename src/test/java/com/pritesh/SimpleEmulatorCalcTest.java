@@ -1,22 +1,15 @@
 package com.pritesh;
 
 import com.cucumber.listener.Reporter;
+import com.pritesh.utils.Utils;
 import cucumber.api.Scenario;
 import cucumber.api.java.After;
 import cucumber.api.java.Before;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
-import org.apache.commons.io.FileUtils;
 import org.junit.Assert;
 import org.openqa.selenium.By;
-import org.openqa.selenium.OutputType;
-
-import java.io.File;
-import java.io.IOException;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 public class SimpleEmulatorCalcTest extends AndroidDesiredCapabilitiesServer {
 
@@ -31,10 +24,12 @@ public class SimpleEmulatorCalcTest extends AndroidDesiredCapabilitiesServer {
         "com.android.calculator2",
         "com.android.calculator2.Calculator");
     Reporter.assignAuthor("SimpleEmulatorCalcTest - Pritesh Patel");
+    Utils.startFlickVideoRecording("2WMDU17320000701");
   }
 
   @After(order = 0)
   public void after() {
+    Utils.stopFlickVideoRecording("2WMDU17320000701");
     super.tearDown();
   }
 
@@ -42,33 +37,10 @@ public class SimpleEmulatorCalcTest extends AndroidDesiredCapabilitiesServer {
   public void afterScenario(Scenario scenario) {
     if (scenario.isFailed()) {
       String screenshotName = scenario.getName().replaceAll(" ", "_");
-      try {
-        // This takes a screenshot from the driver at save it to the specified location
-        File sourcePath = driver.getScreenshotAs(OutputType.FILE);
-
-        // Building up the destination path for the screenshot to save
-        // Also make sure to create a folder 'screenshots' with in the cucumber-report folder
-        DateFormat dateFormat = new SimpleDateFormat("dd-MMM-yyyy__hh_mm_ssaa");
-        // Create folder under project with name "screenshots" provided to destDir.
-        // Set file name using current date time.
-        String dateTimeString = dateFormat.format(new Date());
-
-        String imageFile = screenshotName + "_" + dateTimeString + ".png";
-        File destinationPath =
-            new File(
-                System.getProperty("user.dir")
-                    + "/target/cucumber-reports/screenshots/"
-                    + imageFile);
-
-        // Copy taken screenshot from source location to destination location
-        FileUtils.copyFile(sourcePath, destinationPath);
-
-        // This attach the specified screenshot to the test
-        Reporter.addScreenCaptureFromPath("./screenshots/" + imageFile);
-      } catch (IOException e) {
-      }
+      Utils.takeFaileScreenShot(driver, screenshotName);
     }
   }
+
 
   @Given("^I Open Calculator on Device$")
   public void i_Open_Calculator_on_Device() {}

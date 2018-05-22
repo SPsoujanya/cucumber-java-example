@@ -38,6 +38,8 @@ public class CucumberTestRunnerExtendedReport {
     Reporter.setSystemInfo("Machine", "Mac OS X 10.13.4 x86_64");
     Reporter.setSystemInfo("Selenium", "3.10.0");
     Reporter.setSystemInfo("Gradle", "4.4");
+    Reporter.setSystemInfo("Node", "v7.4.0");
+    Reporter.setSystemInfo("Appium CLI", "1.7.2");
     Reporter.setSystemInfo("Java Version", "1.8.0_101 (Oracle Corporation 25.101-b13)");
   }
 }
